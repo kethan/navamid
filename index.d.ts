@@ -4,7 +4,7 @@ declare module 'navamid' {
     export type UnknownHandler = (uri: string) => void;
     export type NextHandler = (err?: string | Error) => Promisable<void>;
     export type ErrorHandler<T extends Req> = (err: string | Error | null, req: T, res: Res) => Promisable<void>;
-    export type Middleware<T extends Req, P = Params> = (req: T & Req<P>, res: Res, next: NextHandler) => Promisable<void>;
+    export type Middleware<T extends Req = Req, P = Params> = (req: T & Req<P>, res: Res, next: NextHandler) => Promisable<void>;
 
     export interface Req<P = Params> {
         url: string;
@@ -25,5 +25,5 @@ declare module 'navamid' {
         unlisten?: VoidFunction;
     }
 
-    export default function (base?: string, on404?: UnknownHandler): Router;
+    export default function <T extends Req = Req>(base?: string, on404?: UnknownHandler): Router<T>;
 }
