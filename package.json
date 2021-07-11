@@ -1,18 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "0.0.1",
   "name": "navamid",
-	"description": "Fast, unopinionated, minimalist client router",
-	"source": "./src/index.js",
-	"main": "./dist/navamid.umd.js",
-	"module": "./dist/navamid.es.js",
-	"unpkg": "./dist/navamid.umd.js",
-	"types": "./index.d.ts",
-	"exports": {
-		".": {
-			"import": "./dist/navamid.es.js",
-			"require": "./dist/navamid.umd.js"
-		}
-	},
+  "description": "Fast, unopinionated, minimalist client router",
+  "source": "./src/index.js",
+  "main": "./dist/navamid.umd.js",
+  "module": "./dist/navamid.es.js",
+  "unpkg": "./dist/navamid.umd.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/navamid.es.js",
+      "require": "./dist/navamid.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,5 +23,23 @@
   },
   "dependencies": {
     "regexparam": "^2.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kethan/navamid.git"
+  },
+  "keywords": [
+    "router",
+    "express",
+    "middleware",
+    "navaid",
+    "navamid",
+    "pipeline"
+  ],
+  "author": "Kethan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kethan/navamid/issues"
+  },
+  "homepage": "https://github.com/kethan/navamid#readme"
 }
