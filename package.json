@@ -1,0 +1,27 @@
+{
+  "version": "0.0.0",
+  "name": "navamid",
+	"description": "Fast, unopinionated, minimalist client router",
+	"source": "./src/index.js",
+	"main": "./dist/navamid.umd.js",
+	"module": "./dist/navamid.es.js",
+	"unpkg": "./dist/navamid.umd.js",
+	"types": "./index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/navamid.es.js",
+			"require": "./dist/navamid.umd.js"
+		}
+	},
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.4.0"
+  },
+  "dependencies": {
+    "regexparam": "^2.0.0"
+  }
+}
