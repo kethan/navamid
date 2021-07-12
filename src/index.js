@@ -9,7 +9,8 @@ export default function Navamid(base, on404, onErr = () => {}) {
     res = {
       redirect: (uri, replace) => $.route(uri, replace)
     },
-    hns = [];
+    hns = [],
+    onError = onErr;
 
   var fmt = ($.format = function (uri) {
     if (!uri) return uri;
@@ -58,11 +59,11 @@ export default function Navamid(base, on404, onErr = () => {}) {
               let mid = fns.shift();
               mid
                 ? mid(rReq, rRes, (err) =>
-                  err ? onErr(err, rReq, rRes) : mRun(rReq, rRes)
+                  err ? onError(err, rReq, rRes) : mRun(rReq, rRes)
                 )
-                : onErr(null, rReq, rRes);
+                : onError(null, rReq, rRes);
             } catch (error) {
-              onErr(error, rReq, rRes);
+              onError(error, rReq, rRes);
             }
           };
           req.params = params;
