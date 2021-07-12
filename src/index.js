@@ -52,7 +52,7 @@ export default function Navamid(base, on404, onErr = () => {}) {
           for (i = 0; i < obj.keys.length;) {
             params[obj.keys[i]] = arr[++i] || null;
           }
-          let fns = [...hns, ...obj.fns];
+          let fns = [].concat.apply([], ...hns, ...obj.fns);
           let mRun = (rReq, rRes) => {
             try {
               let mid = fns.shift();
