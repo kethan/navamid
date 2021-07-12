@@ -1,6 +1,6 @@
 import { parse } from "regexparam";
 
-export default function Navamid(base, on404) {
+export default function Navamid(base, on404, onErr = () => {}) {
   var rgx,
     curr,
     routes = [],
@@ -9,7 +9,6 @@ export default function Navamid(base, on404) {
     res = {
       redirect: (uri, replace) => $.route(uri, replace)
     },
-    onError = () => { },
     hns = [];
 
   var fmt = ($.format = function (uri) {
@@ -59,11 +58,11 @@ export default function Navamid(base, on404) {
               let mid = obj.fns.shift();
               mid
                 ? mid(rReq, rRes, (err) =>
-                  err ? onError(err, rReq, rRes) : mRun(rReq, rRes)
+                  err ? onErr(err, rReq, rRes) : mRun(rReq, rRes)
                 )
-                : onError(null, rReq, rRes);
+                : onErr(null, rReq, rRes);
             } catch (error) {
-              onError(error, rReq, rRes);
+              onErr(error, rReq, rRes);
             }
           };
           req.params = params;
@@ -72,13 +71,12 @@ export default function Navamid(base, on404) {
           return $;
         }
       }
-      if (on404) on404(uri);
+      if (on404) on404(uri, req, res);
     }
     return $;
   };
 
-  $.listen = function (u, onErr = onError) {
-    onError = onErr;
+  $.listen = function (u) {
     wrap("push");
     wrap("replace");
 

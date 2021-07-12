@@ -13,7 +13,7 @@ let mid = (req, res, next) => {
 	// next("no auth");
 	next();
 };
-let router = Navamid();
+let router = Navamid("," (uri, req, res) => console.log('404'), (err, req, res) => console.log(err));
 // Attach routes
 router
 	.use(mid)
@@ -26,7 +26,5 @@ router
 	.on("/books/*", ({ params }) => {
 		console.log("~> /books/*", params);
 	});
-router.listen("", (err, req, res) => {
-	console.log(err);
-});
+router.listen();
 ```
