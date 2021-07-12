@@ -52,10 +52,10 @@ export default function Navamid(base, on404, onErr = () => {}) {
           for (i = 0; i < obj.keys.length;) {
             params[obj.keys[i]] = arr[++i] || null;
           }
-          obj.fns = [...hns, ...obj.fns];
+          let fns = [...hns, ...obj.fns];
           let mRun = (rReq, rRes) => {
             try {
-              let mid = obj.fns.shift();
+              let mid = fns.shift();
               mid
                 ? mid(rReq, rRes, (err) =>
                   err ? onErr(err, rReq, rRes) : mRun(rReq, rRes)
