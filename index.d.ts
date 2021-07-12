@@ -26,5 +26,5 @@ declare module 'navamid' {
         unlisten?: VoidFunction;
     }
 
-    export default function <T extends Req = Req>(base?: string, on404?: UnknownHandler, onErr?: ErrorHandler<T>): Router<T>;
+    export default function <T extends Req = Req>(base?: string, on404?: UnknownHandler<T>, onErr?: ErrorHandler<T>): Router<T>;
 }
