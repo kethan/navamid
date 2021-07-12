@@ -1,6 +1,5 @@
 import { parse } from "regexparam";
-
-export default function Navamid(base, on404, onErr = () => {}) {
+export default function (base, on404, onErr = () => {}) {
   var rgx,
     curr,
     routes = [],
@@ -36,7 +35,7 @@ export default function Navamid(base, on404, onErr = () => {}) {
   };
 
   $.on = function (pat, ...fns) {
-    (pat = parse(pat)).fns = [...fns];
+    (pat = parse(pat)).fns = [...hns, ...fns];
     routes.push(pat);
     return $;
   };
@@ -53,10 +52,9 @@ export default function Navamid(base, on404, onErr = () => {}) {
           for (i = 0; i < obj.keys.length;) {
             params[obj.keys[i]] = arr[++i] || null;
           }
-          let fns = [].concat.apply([], ...hns, ...obj.fns);
           let mRun = (rReq, rRes) => {
             try {
-              let mid = fns.shift();
+              let mid = obj.fns.shift();
               mid
                 ? mid(rReq, rRes, (err) =>
                   err ? onError(err, rReq, rRes) : mRun(rReq, rRes)
