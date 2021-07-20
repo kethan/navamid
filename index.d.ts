@@ -1,7 +1,7 @@
 declare module 'navamid' {
     type Promisable<T> = T | Promise<T>;
     export type Params = Record<string, any>;
-    export type UnknownHandler<T extends Req> = (uri: string, req?: T, res?: Res) => void;
+    export type UnknownHandler<T extends Req> = (uri: string, req: T, res: Res) => void;
     export type NextHandler = (err?: string | Error) => Promisable<void>;
     export type ErrorHandler<T extends Req> = (err: string | Error | null, req: T, res: Res) => Promisable<void>;
     export type Middleware<T extends Req = Req> = (req: T, res: Res, next: NextHandler) => Promisable<void>;
