@@ -1,7 +1,8 @@
 {
-	"version": "0.0.9",
+	"version": "0.1.0",
 	"name": "navamid",
 	"description": "Fast, unopinionated, minimalist client router",
+	"files": ["dist"],
 	"source": "./src/index.js",
 	"main": "./dist/navamid.umd.js",
 	"module": "./dist/navamid.es.js",

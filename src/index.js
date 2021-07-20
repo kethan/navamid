@@ -52,9 +52,10 @@ export default function (base, on404, onErr = () => {}) {
           for (i = 0; i < obj.keys.length;) {
             params[obj.keys[i]] = arr[++i] || null;
           }
+          let fns = [...obj.fns];
           let mRun = (rReq, rRes) => {
             try {
-              let mid = obj.fns.shift();
+              let mid = fns.shift();
               mid
                 ? mid(rReq, rRes, (err) =>
                   err ? onError(err, rReq, rRes) : mRun(rReq, rRes)
