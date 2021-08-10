@@ -1,5 +1,5 @@
 import { parse } from "regexparam";
-export default function (base, on404, onErr = () => {}) {
+export default function (base, on404, onErr = () => { }) {
   var rgx,
     curr,
     routes = [],
@@ -76,7 +76,7 @@ export default function (base, on404, onErr = () => {}) {
     return $;
   };
 
-  $.listen = function (u) {
+  $.listen = function (u, c) {
     wrap("push");
     wrap("replace");
 
@@ -115,6 +115,7 @@ export default function (base, on404, onErr = () => {}) {
       removeEventListener("click", click);
     };
 
+    if (c) c();
     return $.run(u);
   };
 

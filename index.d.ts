@@ -22,7 +22,7 @@ declare module 'navamid' {
         on<P = Params, T extends Req = Req<P>>(pattern: string, ...handlers: OnMiddleware<P, T>[]): Router;
         run(uri?: string): Router;
         use(...handlers: Middleware<T>[]): Router;
-        listen(uri?: string): Router;
+        listen(uri?: string, callback?: Function): Router;
         unlisten?: VoidFunction;
     }
 
