@@ -3,14 +3,13 @@ export default function (base, on404, onErr = () => { }) {
   var rgx,
     curr,
     routes = [],
-    req = { url: {}, params: {} },
     $ = {},
-    res = {
-      redirect: (uri, replace) => $.route(uri, replace)
-    },
     hns = [],
     onError = onErr;
-
+  $.req = { url: {}, params: {} };
+  $.res = {
+    redirect: (uri, replace) => $.route(uri, replace)
+  };
   var fmt = ($.format = function (uri) {
     if (!uri) return uri;
     uri = "/" + uri.replace(/^\/|\/$/g, "");
@@ -65,18 +64,18 @@ export default function (base, on404, onErr = () => { }) {
               onError(error, rReq, rRes);
             }
           };
-          req.params = params;
-          req.url = uri;
-          mRun(req, res);
+          $.req.params = params;
+          $.req.url = uri;
+          mRun($.req, $.res);
           return $;
         }
       }
-      if (on404) on404(uri, req, res);
+      if (on404) on404(uri, $.req, $.res);
     }
     return $;
   };
 
-  $.listen = function (u, c) {
+  $.listen = function (u) {
     wrap("push");
     wrap("replace");
 
@@ -115,7 +114,6 @@ export default function (base, on404, onErr = () => { }) {
       removeEventListener("click", click);
     };
 
-    if (c) c();
     return $.run(u);
   };
 

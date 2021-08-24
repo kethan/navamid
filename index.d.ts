@@ -17,12 +17,14 @@ declare module 'navamid' {
     }
 
     export interface Router<T extends Req = Req> {
+        req: T;
+        res: Res;
         format(uri: string): string | false;
         route(uri: string, replace?: boolean): void;
         on<P = Params, T extends Req = Req<P>>(pattern: string, ...handlers: OnMiddleware<P, T>[]): Router;
         run(uri?: string): Router;
         use(...handlers: Middleware<T>[]): Router;
-        listen(uri?: string, callback?: Function): Router;
+        listen(uri?: string): Router;
         unlisten?: VoidFunction;
     }
 

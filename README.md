@@ -50,10 +50,6 @@ router.listen()
 
 	- An array of middlewares to be executed for the path
 
-#### 3. listen(uri?, callback?)
-
-	- An optional callback to be called after starting the listener.
-
 #### Req Object
 ```js
 {
