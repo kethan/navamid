@@ -8,8 +8,8 @@ export default function (base, on404, onErr = () => { }) {
     onError = onErr;
   $.req = { url: {}, params: {} };
   $.res = {
-    run: (uri) => $.run(uri),
-    redirect: (uri, replace) => $.route(uri, replace)
+    run: $.run,
+    redirect: $.route
   };
   var fmt = ($.format = function (uri) {
     if (!uri) return uri;
