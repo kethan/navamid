@@ -13,6 +13,7 @@ declare module 'navamid' {
     }
 
     export interface Res {
+        run: (uri?: string) => Router;
         redirect: (uri: string, replace?: boolean) => void;
     }
 
@@ -24,8 +25,8 @@ declare module 'navamid' {
         on<P = Params, T extends Req = Req<P>>(pattern: string, ...handlers: OnMiddleware<P, T>[]): Router;
         run(uri?: string): Router;
         use(...handlers: Middleware<T>[]): Router;
-        listen(uri?: string): Router;
-        unlisten?: VoidFunction;
+        listen(uri?: string, callback?: Function): Router;
+        unlisten: VoidFunction;
     }
 
     export default function <T extends Req = Req>(base?: string, on404?: UnknownHandler<T>, onErr?: ErrorHandler<T>): Router<T>;

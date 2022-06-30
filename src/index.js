@@ -8,7 +8,8 @@ export default function (base, on404, onErr = () => { }) {
     onError = onErr;
   $.req = { url: {}, params: {} };
   $.res = {
-    redirect: (uri, replace) => $.route(uri, replace)
+    run: $.run,
+    redirect: $.route,
   };
   var fmt = ($.format = function (uri) {
     if (!uri) return uri;
@@ -75,11 +76,12 @@ export default function (base, on404, onErr = () => { }) {
     return $;
   };
 
-  $.listen = function (u) {
+  $.listen = function (u, c) {
     wrap("push");
     wrap("replace");
 
     function run(e) {
+      c && c();
       $.run();
     }
 
